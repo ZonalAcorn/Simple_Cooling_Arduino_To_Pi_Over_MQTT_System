@@ -1,0 +1,29 @@
+READ ME Simple Cooling Control System
+
+
+This program is designed to run a simple 3-6V motor (with a fan) depending on light exposure and temperature exposure, it also sends readings and output states out the serial port as a JSON file.
+
+
+
+THIS PROGRAM WAS DESIGNED FOR AN ARDUINO UNO
+THIS PROGRAM IS DEPENDENT ON TWO LIBRARIES
+Adafruit’s DHT sensor library (version 1.4.6)
+Bblanchon’s ArduinoJson library (version 7.4.2)
+
+
+
+All hardware is defined by name and digital IO port, underneath that all aliases are defined
+Setup is self-explanatory
+
+Then void loop executes the logic below:
+•	If the photoresistor sees dark:
+    o	When temp is below 68 Green light is on
+    o	When temp is between 68 and 69 Red light is on and motor is on a lower setting (100/255)
+    o	When the temp is between 69 and 71 Red light is on and motor is on a medium setting (200/255)
+    o	When the temp is over 71 Red light is on and motor is on a high setting (255/255)
+•	If the photoresistor sees light:
+    o	When temp is below 72 Green light is on
+    o	When temp is between 72 and 73 Red light is on and motor is on a lower setting (100/255)
+    o	When the temp is between 73 and 75 Red light is on and motor is on a medium setting (200/255)
+    o	When the temp is over 75 Red light is on and motor is on a high setting (255/255)
+•	The DeviceID, Light Level, Temperature, Humidity, Fan Status, and Fan Setting are sent to a JSON document, which is pushed out of the Serial   Port 9600
